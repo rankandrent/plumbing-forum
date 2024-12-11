@@ -7,10 +7,10 @@
   node_bundler = "esbuild"
   external_node_modules = ["@octokit/rest", "openai"]
 
-# Run the generator every day at midnight UTC
+# Run the generator every day at 12:00 PM UTC
 [[plugins]]
   package = "@netlify/plugin-functions-scheduled-jobs"
 
 [[scheduled]]
   command = "/.netlify/functions/generate-threads"
-  schedule = "0 10 * * *"
+  schedule = "0 12 * * *"
