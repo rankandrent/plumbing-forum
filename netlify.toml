@@ -1,0 +1,15 @@
+[build]
+  command = "npm run build"
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Run the generator every day at midnight UTC
+[[plugins]]
+  package = "@netlify/plugin-functions-scheduled-jobs"
+
+[[scheduled]]
+  command = "node netlify/functions/generate-threads.js"
+  schedule = "@daily"

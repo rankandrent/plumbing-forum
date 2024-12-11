@@ -1,0 +1,17 @@
+{
+  "name": "plumbing-forum",
+  "version": "1.0.0",
+  "description": "Static plumbing forum with automated thread generation",
+  "main": "scripts/thread_generator.js",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "generate": "node scripts/thread_generator.js"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "dotenv": "^16.3.1",
+    "date-fns": "^2.30.0",
+    "@octokit/rest": "^19.0.13",
+    "@netlify/plugin-functions-scheduled-jobs": "^1.0.0"
+  }
+}
