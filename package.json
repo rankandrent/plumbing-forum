@@ -4,7 +4,7 @@
   "description": "Static plumbing forum with automated thread generation",
   "main": "scripts/thread_generator.js",
   "scripts": {
-    "build": "echo 'No build step required'",
+    "build": "netlify functions:build",
     "generate": "node scripts/thread_generator.js"
   },
   "dependencies": {
