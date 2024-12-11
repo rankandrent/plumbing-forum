@@ -283,25 +283,47 @@ function generateIndexUpdate(thread, threadId, timestamp, replyCount) {
 }
 
 exports.handler = async function(event, context) {
+    // Log the event type and body
+    console.log('Event type:', event.httpMethod);
+    console.log('Event body:', event.body);
+    console.log('Environment variables:', {
+        hasOpenAI: !!process.env.OPENAI_API_KEY,
+        hasGithubToken: !!process.env.GITHUB_TOKEN,
+        hasGithubOwner: !!process.env.GITHUB_OWNER,
+        hasGithubRepo: !!process.env.GITHUB_REPO
+    });
+
     try {
+        // Check if this is a scheduled event
+        const isScheduled = event.headers && event.headers['x-trigger'] === 'scheduled';
+        console.log('Is scheduled event:', isScheduled);
+
         // Generate new content
+        console.log('Generating new content...');
         const newContent = await generateThreadContent();
+        console.log('Content generated successfully');
         
         // Update GitHub repository
+        console.log('Updating GitHub repository...');
         const commitSha = await updateGitHubRepo(newContent);
+        console.log('GitHub repository updated successfully');
         
         return {
             statusCode: 200,
             body: JSON.stringify({ 
                 message: 'Successfully generated new threads and replies',
-                commit: commitSha
+                commit: commitSha,
+                scheduled: isScheduled
             })
         };
     } catch (error) {
-        console.error('Error in scheduled function:', error);
+        console.error('Error in function:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: error.message })
+            body: JSON.stringify({ 
+                error: error.message,
+                stack: error.stack
+            })
         };
     }
 };
