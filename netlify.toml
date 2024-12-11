@@ -11,5 +11,5 @@
   package = "@netlify/plugin-functions-scheduled-jobs"
 
 [[scheduled]]
-  command = "node netlify/functions/generate-threads.js"
-  schedule = "@daily"
+  command = "/.netlify/functions/generate-threads"
+  schedule = "0 10 * * *"
