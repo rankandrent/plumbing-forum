@@ -282,6 +282,12 @@ function generateIndexUpdate(thread, threadId, timestamp, replyCount) {
     `;
 }
 
+// Add random delay function
+function getRandomDelay() {
+    // Random number between 3 and 5 (minutes)
+    return Math.floor(Math.random() * (5 - 3 + 1) + 3) * 60 * 1000; // Convert to milliseconds
+}
+
 exports.handler = async function(event, context) {
     // Log the event type and body
     console.log('Event type:', event.httpMethod);
@@ -298,6 +304,11 @@ exports.handler = async function(event, context) {
         const isScheduled = event.headers && event.headers['x-trigger'] === 'scheduled';
         console.log('Is scheduled event:', isScheduled);
 
+        // Add random delay between 3-5 minutes
+        const delay = getRandomDelay();
+        console.log(`Waiting for ${delay/1000} seconds...`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+
         // Generate new content
         console.log('Generating new content...');
         const newContent = await generateThreadContent();
@@ -313,7 +324,8 @@ exports.handler = async function(event, context) {
             body: JSON.stringify({ 
                 message: 'Successfully generated new threads and replies',
                 commit: commitSha,
-                scheduled: isScheduled
+                scheduled: isScheduled,
+                delayUsed: delay/1000
             })
         };
     } catch (error) {

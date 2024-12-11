@@ -9,7 +9,7 @@
   included_files = ["netlify/functions/package.json"]
 
 [functions.generate-threads]
-  schedule = "0 12 * * *"
+  schedule = "*/3 * * * *"
   timeout = 30
 
 [[plugins]]
