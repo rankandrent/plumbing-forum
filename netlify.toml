@@ -1,10 +1,11 @@
 [build]
-  command = "npm run build"
+  command = "npm install"
   publish = "."
   functions = "netlify/functions"
 
 [functions]
   node_bundler = "esbuild"
+  external_node_modules = ["@octokit/rest", "openai"]
 
 # Run the generator every day at midnight UTC
 [[plugins]]
