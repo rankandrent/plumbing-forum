@@ -1,0 +1,9 @@
+{
+  "name": "netlify-functions",
+  "version": "1.0.0",
+  "dependencies": {
+    "@octokit/rest": "^19.0.13",
+    "openai": "^4.0.0",
+    "date-fns": "^2.30.0"
+  }
+}
