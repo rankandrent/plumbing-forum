@@ -1,6 +1,11 @@
 # Plumber's Forum - Static Website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/31076fea-c210-4feb-8413-425cf5e239db/deploy-status)](https://app.netlify.com/sites/plumber-forum/deploys)
+
 A static website for a plumbing community forum featuring discussions, guides, and resources for plumbing professionals and enthusiasts.
+
+## Live Site
+[Visit the Forum](https://plumber-forum.netlify.app)
 
 ## Features
 
