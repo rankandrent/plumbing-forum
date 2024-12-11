@@ -10,7 +10,7 @@
 
 [functions.generate-threads]
   schedule = "*/3 * * * *"
-  timeout = 30
+  timeout = 60
 
 [[plugins]]
   package = "@netlify/plugin-functions-scheduled-jobs"
