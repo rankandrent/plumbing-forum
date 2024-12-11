@@ -1,0 +1,14 @@
+name: Generate Threads
+
+on:
+  schedule:
+    - cron: '*/3 * * * *'  # Run every 3 minutes
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Thread
+        run: |
+          curl -X POST https://plumber-forum.netlify.app/.netlify/functions/generate-threads
